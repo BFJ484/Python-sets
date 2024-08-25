@@ -1,12 +1,14 @@
 def operaçao (operação,conjunto1,conjunto2):
   if operaçao == 'U':
-      resultado = sorted(set(conjunto1)) | set(conjunto2)
+      resultado = sorted(set(conjunto1).union(set(conjunto2)))
   elif operaçao == 'I':
       resultado = sorted(set(conjunto1) & set(conjunto2))
   elif operaçao == 'D': 
       resultado = sorted(set(conjunto1) - set(conjunto2))
   elif operaçao == 'C': 
       resultado = [(a, b) for a in conjunto1 for b in conjunto2]
+  else:
+      resultado = None 
   return resultado
 
 def lerLinhas(linhas):
@@ -27,6 +29,7 @@ def main():
   try:
       with open(nomeArquivo, 'r') as arquivo:
           linhas = arquivo.readlines()
+          lerLinhas(linhas)
 
   except FileNotFoundError:
       print(f"Arquivo '{nomeArquivo}' não encontrado.")
